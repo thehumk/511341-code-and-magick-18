@@ -9,7 +9,6 @@ var TITLE_Y = 30;
 var FONT_GAP = 20;
 var SHADOW_GAP = 10;
 var BAR_GAP = 50;
-var GAP = 30;
 var BAR_WIDTH = 40;
 var BAR_HEIGHT_MAX = 150;
 var BAR_X = 130;
@@ -19,7 +18,7 @@ var NAME_Y = 250;
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HIGHT);
-}
+};
 
 var getMaxElement = function (arr) {
   var maxElement = arr[0];
@@ -31,7 +30,7 @@ var getMaxElement = function (arr) {
   }
 
   return maxElement;
-}
+};
 
 window.renderStatistics = function (ctx, names, times) {
 
@@ -46,11 +45,7 @@ window.renderStatistics = function (ctx, names, times) {
 
   var maxTime = getMaxElement(times);
 
-// max-time / bar-height = time[i] / x
-// x = time[i] * bar-height / max-time
-// x = time[i] * -150 / max-time
-
-  for (var i =0; i < names.length; i++) {
+  for (var i = 0; i < names.length; i++) {
     var time = times[i].toFixed();
     var barHeight = times[i] * BAR_HEIGHT_MAX / maxTime;
 
