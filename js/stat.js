@@ -34,7 +34,7 @@ var getMaxElement = function (arr) {
 
 var getRandomInteger = function (min, max) {
   var randomNumber = min + Math.random() * (max - min);
-  return randomNumber;
+  return Math.round(randomNumber);
 };
 
 var getBlueRandomSaturation = function () {
