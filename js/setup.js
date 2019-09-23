@@ -14,9 +14,11 @@ var getRandomInteger = function (min, max) {
   return Math.round(randomNumber);
 };
 
+var QUANTITY_WIZARDS = 4;
+
 var similarWizards = [];
 
-var namesWizards = [
+var NAMES_WIZARDS = [
   'Иван',
   'Хуан Себастьян',
   'Мария',
@@ -27,7 +29,7 @@ var namesWizards = [
   'Вашингтон'
 ];
 
-var surnamesWizards = [
+var SURNAME_WIZARDS = [
   'да Марья',
   'Верон',
   'Мирабелла',
@@ -38,7 +40,7 @@ var surnamesWizards = [
   'Ирвинг'
 ];
 
-var coatColorWizards = [
+var COAT_COLOR_WIZARDS = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
   'rgb(146, 100, 161)',
@@ -47,7 +49,7 @@ var coatColorWizards = [
   'rgb(0, 0, 0)'
 ];
 
-var eyesColorWizards = [
+var EYES_COLOR_WIZARDS = [
   'black',
   'red',
   'blue',
@@ -55,12 +57,16 @@ var eyesColorWizards = [
   'green'
 ];
 
-for (var i = 0; i < 4; i++) {
-  similarWizards[i] = {};
-  similarWizards[i].name = namesWizards[getRandomInteger(0, 7)] + ' ' + surnamesWizards[getRandomInteger(0, 7)];
-  similarWizards[i].coatColor = coatColorWizards[getRandomInteger(0, 5)];
-  similarWizards[i].eyesColor = eyesColorWizards[getRandomInteger(0, 4)];
-}
+var getSimilarWizards = function (arrayWizards, quantity) {
+  for (var i = 0; i < quantity; i++) {
+    arrayWizards[i] = {};
+    arrayWizards[i].name = NAMES_WIZARDS[getRandomInteger(0, NAMES_WIZARDS.length - 1)] + ' ' + SURNAME_WIZARDS[getRandomInteger(0, SURNAME_WIZARDS.length - 1)];
+    arrayWizards[i].coatColor = COAT_COLOR_WIZARDS[getRandomInteger(0, COAT_COLOR_WIZARDS.length - 1)];
+    arrayWizards[i].eyesColor = EYES_COLOR_WIZARDS[getRandomInteger(0, EYES_COLOR_WIZARDS.length - 1)];
+  }
+};
+
+getSimilarWizards(similarWizards, QUANTITY_WIZARDS);
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -72,10 +78,16 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
-var fragment = document.createDocumentFragment();
+var getFragmentElement = function () {
+  var fragment = document.createDocumentFragment();
 
-for (i = 0; i < similarWizards.length; i++) {
-  fragment.appendChild(renderWizard(similarWizards[i]));
-}
+  for (var i = 0; i < similarWizards.length; i++) {
+    fragment.appendChild(renderWizard(similarWizards[i]));
+  }
 
-similarList.appendChild(fragment);
+  similarList.appendChild(fragment);
+};
+
+getFragmentElement();
+
+
